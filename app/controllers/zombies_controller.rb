@@ -11,4 +11,8 @@ class ZombiesController < ApplicationController
       render :new
     end
   end
+
+  def show
+    @zombie = Zombie.find params[:id]
+  end
 end
