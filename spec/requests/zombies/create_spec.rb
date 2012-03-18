@@ -5,6 +5,8 @@ describe 'Creating zombies', :js => true do
   it 'should allow users to create zombies' do
     visit new_zombie_path
 
+    find('h1').should have_content('Zombie Create')
+
     Zombie.count.should == 0
 
     within '#new_zombie' do

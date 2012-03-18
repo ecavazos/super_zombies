@@ -9,8 +9,19 @@
 
   %body
 
-    - if flash.notice
-      #notice= flash.notice
+    .navbar.navbar-fixed-top
+      .navbar-inner
+        .container
+          = link_to 'SuperZombies', root_path, :class => 'brand'
 
-    = yield
+    .container
+
+      %section#gridSystem
+        .page-header
+          %h1=  yield :title
+
+        - if flash.notice
+          #notice= flash.notice
+
+        = yield
 

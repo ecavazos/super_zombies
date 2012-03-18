@@ -1,21 +1,28 @@
-= form_for @zombie do |f|
+- content_for :title do
+  Zombie Create
 
-  - if @zombie.errors.any?
-    #errors
-      - @zombie.errors.full_messages.each do |message|
-        .error= message
+.row
+  .span12
 
-  .row
-    = f.label :name
-    = f.text_field :name
+    = form_for @zombie, :html => { :class => 'form-horizontal' } do |f|
 
-  .row
-    = f.label :gender
-    = f.text_field :gender
+      - if @zombie.errors.any?
+        .alert.alert-error
+          %ul#errors
+            - @zombie.errors.full_messages.each do |message|
+              %li.error= message
 
-  .row
-    = f.label :age
-    = f.text_field :age
+      .control-group
+        = f.label :name, :class => 'control-label'
+        .controls= f.text_field :name
 
-  .row
-    = f.submit 'Unleash Carnage'
+      .control-group
+        = f.label :gender, :class => 'control-label'
+        .controls= f.text_field :gender
+
+      .control-group
+        = f.label :age, :class => 'control-label'
+        .controls= f.text_field :age
+
+      .form-actions
+        = f.submit 'Unleash Carnage', :class => 'btn, btn-primary'

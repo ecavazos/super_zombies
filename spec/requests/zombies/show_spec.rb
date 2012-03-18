@@ -7,6 +7,8 @@ describe 'Viewing zombie details', :js => true do
 
     visit zombie_path(zombie)
 
+    find('h1').should have_content('Zombie Details')
+
     within '#details' do
       find('#name'  ).should have_content('Name: Meehhrrrr')
       find('#gender').should have_content('Gender: Female')
