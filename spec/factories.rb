@@ -4,3 +4,5 @@ Factory.define :zombie do |f|
   f.age    '44'
 end
 
+Factory.define :brain do |f|
+end

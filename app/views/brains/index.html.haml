@@ -1,0 +1,25 @@
+- content_for :title do
+  Brains
+
+- content_for :header_buttons do
+  %a.btn{ :href => new_brain_path } New Brain
+
+%table.table.table-bordered.table-striped
+
+  %thead
+    %tr
+      %th Kind
+      %th Size
+      %th
+      %th
+
+  %tbody
+
+    - @brains.each do |brain|
+      %tr{ :id => dom_id(brain) }
+        %td= link_to brain.kind, brain_path(brain)
+        %td= brain.size
+        %td= link_to 'Edit', edit_brain_path(brain), :class => 'btn btn-info'
+        %td= link_to 'Delete', brain_path(brain), :method => :delete, :class => 'btn btn-danger'
+
+

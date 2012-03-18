@@ -17,4 +17,20 @@ describe 'Navigation', :js => true do
     end
     current_path.should == zombies_path
   end
+
+  it 'should link to brains list page' do
+    visit root_path
+    within '.navbar' do
+      click_link 'Brains'
+    end
+    current_path.should == brains_path
+  end
+
+  it 'should link to guts list page' do
+    visit root_path
+    within '.navbar' do
+      click_link 'Guts'
+    end
+    current_path.should == guts_path
+  end
 end

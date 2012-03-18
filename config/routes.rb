@@ -1,5 +1,7 @@
 SuperZombies::Application.routes.draw do
   resources :zombies
+  resources :brains
+  resources :guts
 
   root :to => 'welcome#index'
   # The priority is based upon order of creation:
