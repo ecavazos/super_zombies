@@ -20,6 +20,9 @@
         .page-header
           %h1=  yield :title
 
+          .header-buttons
+            = yield :header_buttons
+
         - if flash.notice
           #notice= flash.notice
 

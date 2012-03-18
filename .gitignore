@@ -15,3 +15,5 @@
 /tmp
 
 chromedriver.log
+
+/.sass-cache

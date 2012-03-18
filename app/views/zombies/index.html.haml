@@ -1,0 +1,22 @@
+- content_for :title do
+  Zombies
+
+- content_for :header_buttons do
+  %a.btn{ :href => new_zombie_path } New Zombie
+
+%table.table.table-bordered.table-striped
+
+  %thead
+    %tr
+      %th Name
+      %th Gender
+      %th Age
+
+  %tbody
+
+    - @zombies.each do |zombie|
+      %tr{ :id => dom_id(zombie) }
+        %td= link_to zombie.name, zombie_path(zombie)
+        %td= zombie.gender
+        %td= zombie.age
+

@@ -1,4 +1,9 @@
 class ZombiesController < ApplicationController
+
+  def index
+    @zombies = Zombie.all
+  end
+
   def new
     @zombie = Zombie.new
   end
