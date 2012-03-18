@@ -11,6 +11,7 @@
       %th Name
       %th Gender
       %th Age
+      %th
 
   %tbody
 
@@ -19,4 +20,5 @@
         %td= link_to zombie.name, zombie_path(zombie)
         %td= zombie.gender
         %td= zombie.age
+        %td= link_to 'Delete', zombie_path(zombie), :method => :delete
 

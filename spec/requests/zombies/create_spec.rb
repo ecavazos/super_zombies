@@ -19,7 +19,7 @@ describe 'Creating zombies', :js => true do
 
     find('#notice').should have_content('Your new zombie has been added to the horde.')
 
-    current_path.should == root_path
+    current_path.should == zombies_path
 
     Zombie.count.should == 1
 

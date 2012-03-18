@@ -43,4 +43,18 @@ describe 'Listing zombies', :js => true do
     current_path.should == new_zombie_path
   end
 
+  it 'allows zombies to be deleted' do
+    zombie = Zombie.gen :name => 'HungerPangs', :gender => 'Male', :age => 50
+
+    visit zombies_path
+
+    click_link 'Delete'
+
+    Zombie.count.should == 0
+
+    all('tbody tr').count.should == 0
+
+    find('#notice').should have_content('You have successfully deleted one of the undead.')
+  end
+
 end

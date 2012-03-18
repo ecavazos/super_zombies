@@ -13,6 +13,8 @@
       .navbar-inner
         .container
           = link_to 'SuperZombies', root_path, :class => 'brand'
+          %ul.nav
+            %li= link_to 'Zombies', zombies_path
 
     .container
 
@@ -24,7 +26,9 @@
             = yield :header_buttons
 
         - if flash.notice
-          #notice= flash.notice
+          #notice.alert.alert-success
+            %a.close{ 'data-dismiss' => 'alert' }×
+            = flash.notice
 
         = yield
 

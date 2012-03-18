@@ -11,7 +11,7 @@ class ZombiesController < ApplicationController
   def create
     @zombie = Zombie.new params[:zombie]
     if @zombie.save
-      redirect_to root_path, :notice => 'Your new zombie has been added to the horde.'
+      redirect_to zombies_path, :notice => 'Your new zombie has been added to the horde.'
     else
       render :new
     end
@@ -19,5 +19,10 @@ class ZombiesController < ApplicationController
 
   def show
     @zombie = Zombie.find params[:id]
+  end
+
+  def destroy
+    Zombie.find(params[:id]).destroy
+    redirect_to zombies_path, :notice => 'You have successfully deleted one of the undead.'
   end
 end
