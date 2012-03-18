@@ -4,6 +4,10 @@ class ZombiesController < ApplicationController
     @zombies = Zombie.all
   end
 
+  def show
+    @zombie = Zombie.find params[:id]
+  end
+
   def new
     @zombie = Zombie.new
   end
@@ -17,8 +21,17 @@ class ZombiesController < ApplicationController
     end
   end
 
-  def show
+  def edit
     @zombie = Zombie.find params[:id]
+  end
+
+  def update
+    @zombie = Zombie.find params[:id]
+    if @zombie.update_attributes params[:zombie]
+      redirect_to zombies_path, :notice => 'Zombies heart accurate data.'
+    else
+      render :edit
+    end
   end
 
   def destroy

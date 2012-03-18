@@ -34,8 +34,6 @@ describe 'Listing zombies', :js => true do
   end
 
   it 'links to the create zombie page' do
-    zombie = Zombie.gen :name => 'HungerPangs', :gender => 'Male', :age => 50
-
     visit zombies_path
 
     click_link 'New Zombie'
@@ -43,8 +41,18 @@ describe 'Listing zombies', :js => true do
     current_path.should == new_zombie_path
   end
 
-  it 'allows zombies to be deleted' do
+  it 'links to the edit zombie page' do
     zombie = Zombie.gen :name => 'HungerPangs', :gender => 'Male', :age => 50
+
+    visit zombies_path
+
+    click_link 'Edit'
+
+    current_path.should == edit_zombie_path(zombie)
+  end
+
+  it 'allows zombies to be deleted' do
+    Zombie.gen :name => 'HungerPangs', :gender => 'Male', :age => 50
 
     visit zombies_path
 
