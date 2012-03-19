@@ -78,7 +78,7 @@ describe 'Listing zombies', :js => true do
 
     all('tbody tr').count.should == 0
 
-    find('#notice').should have_content('You have successfully deleted one of the undead.')
+    find('#notice').should have_content('You have destroyed one of the undead.')
   end
 
 end

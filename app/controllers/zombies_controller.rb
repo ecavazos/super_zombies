@@ -36,6 +36,6 @@ class ZombiesController < ApplicationController
 
   def destroy
     Zombie.find(params[:id]).destroy
-    redirect_to zombies_path, :notice => 'You have successfully deleted one of the undead.'
+    redirect_to zombies_path, :notice => 'You have destroyed one of the undead.'
   end
 end
