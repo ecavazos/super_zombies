@@ -5,4 +5,6 @@ Factory.define :zombie do |f|
 end
 
 Factory.define :brain do |f|
+  f.kind 'Insane'
+  f.size 'Huge'
 end

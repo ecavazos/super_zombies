@@ -4,3 +4,5 @@
   - Having a page to secure makes it easier to test drive the auth in
 
 * Provide code snippets or hints for boilerplate (depends on what we expect for candidates)
+
+* Should there be a show page for the associations?
