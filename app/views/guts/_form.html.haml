@@ -1,0 +1,19 @@
+= form_for @gut, :html => { :class => 'form-horizontal' } do |f|
+
+  - if @gut.errors.any?
+    .alert.alert-error
+      %ul#errors
+        - @gut.errors.full_messages.each do |message|
+          %li.error= message
+
+  .control-group
+    = f.label :kind, :class => 'control-label'
+    .controls= f.text_field :kind
+
+  .control-group
+    = f.label :species, :class => 'control-label'
+    .controls= f.text_field :species
+
+  .form-actions
+    = f.submit 'Bon Appétit', :class => 'btn, btn-primary'
+

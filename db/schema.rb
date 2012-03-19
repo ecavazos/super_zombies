@@ -10,11 +10,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120318170851) do
+ActiveRecord::Schema.define(:version => 20120319022044) do
 
   create_table "brains", :force => true do |t|
     t.string   "kind"
     t.string   "size"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "guts", :force => true do |t|
+    t.string   "kind"
+    t.string   "species"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

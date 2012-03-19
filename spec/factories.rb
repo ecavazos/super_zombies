@@ -8,3 +8,8 @@ Factory.define :brain do |f|
   f.kind 'Insane'
   f.size 'Huge'
 end
+
+Factory.define :gut do |f|
+  f.kind    'Crunchy'
+  f.species 'Rabbit'
+end

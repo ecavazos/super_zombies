@@ -1,0 +1,25 @@
+- content_for :title do
+  Guts
+
+- content_for :header_buttons do
+  %a.btn{ :href => new_gut_path } New Gut
+
+%table.table.table-bordered.table-striped
+
+  %thead
+    %tr
+      %th Kind
+      %th Species
+      %th
+      %th
+
+  %tbody
+
+    - @guts.each do |gut|
+      %tr{ :id => dom_id(gut) }
+        %td= link_to gut.kind, gut_path(gut)
+        %td= gut.species
+        %td= link_to 'Edit', edit_gut_path(gut), :class => 'btn btn-info'
+        %td= link_to 'Delete', gut_path(gut), :method => :delete, :class => 'btn btn-danger'
+
+
