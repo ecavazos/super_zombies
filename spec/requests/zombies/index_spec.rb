@@ -31,7 +31,7 @@ describe 'Listing zombies', :js => true do
         zombie.name,
         zombie.gender,
         zombie.age.to_s,
-        zombie.brain.kind, # this wobbles ???
+        zombie.brain.kind,
         zombie.gut.kind,
        'Edit',
        'Delete'
