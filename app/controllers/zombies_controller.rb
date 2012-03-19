@@ -1,7 +1,7 @@
 class ZombiesController < ApplicationController
 
   def index
-    @zombies = Zombie.all
+    @zombies = Zombie.includes(:brain, :gut)
   end
 
   def show

@@ -11,3 +11,15 @@
 
   #age
     Age: #{ @zombie.age }
+
+  #brain
+    Fav Brains:
+    - if @zombie.brain
+      - brain = @zombie.brain
+      #{ brain.size } #{ brain.kind.downcase } brains
+
+  #gut
+    Fav Guts: 
+    - if @zombie.gut
+      - gut = @zombie.gut
+      #{ gut.kind } #{ gut.species.downcase } guts

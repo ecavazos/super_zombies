@@ -18,5 +18,16 @@
     = f.label :age, :class => 'control-label'
     .controls= f.text_field :age
 
+  .control-group
+    = f.label :brain_id, 'Fav Brains', :class => 'control-label'
+    .controls
+      = f.select :brain_id, Brain.all.map { |b| [b.kind, b.id] }, { :include_blank => true }
+
+  .control-group
+    = f.label :gut_id, 'Fav Guts', :class => 'control-label'
+    .controls
+      = f.select :gut_id, Gut.all.map { |g| [g.kind, g.id] }, { :include_blank => true }
+
   .form-actions
     = f.submit 'Unleash Carnage', :class => 'btn, btn-primary'
+

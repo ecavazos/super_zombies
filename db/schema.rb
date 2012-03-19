@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120319022044) do
+ActiveRecord::Schema.define(:version => 20120319051040) do
 
   create_table "brains", :force => true do |t|
     t.string   "kind"
@@ -32,6 +32,11 @@ ActiveRecord::Schema.define(:version => 20120319022044) do
     t.integer  "age"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "brain_id"
+    t.integer  "gut_id"
   end
+
+  add_index "zombies", ["brain_id"], :name => "index_zombies_on_brain_id"
+  add_index "zombies", ["gut_id"], :name => "index_zombies_on_gut_id"
 
 end

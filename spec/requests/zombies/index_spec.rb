@@ -13,13 +13,29 @@ describe 'Listing zombies', :js => true do
 
     find('h1').should have_content('Zombies')
 
-    all('thead th').map(&:text).should == ['Name', 'Gender', 'Age', '', '']
+    all('thead th').map(&:text).should == [
+      'Name',
+      'Gender',
+      'Age',
+      'Fav Brains',
+      'Fav Guts',
+      '',
+      ''
+    ]
 
     all('tbody tr').count.should == 5
 
     Zombie.all.each do |zombie|
       row = find("#zombie_#{ zombie.id }")
-      row.all('td').map(&:text).should == [zombie.name, zombie.gender, zombie.age.to_s, 'Edit', 'Delete']
+      row.all('td').map(&:text).should == [
+        zombie.name,
+        zombie.gender,
+        zombie.age.to_s,
+        zombie.brain.kind, # this wobbles ???
+        zombie.gut.kind,
+       'Edit',
+       'Delete'
+      ]
     end
   end
 

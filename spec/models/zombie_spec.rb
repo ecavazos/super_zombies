@@ -4,7 +4,13 @@ describe Zombie, 'mass assignment' do
 
   it 'does not raise when happy' do
     lambda {
-      Zombie.create! :name => 'Mary', :gender => 'Female', :age => 22
+      Zombie.create!({
+        :name     => 'Mary',
+        :gender   => 'Female',
+        :age      => 22,
+        :brain_id => Brain.gen.id,
+        :gut_id   => Gut.gen.id
+      })
     }.should_not raise_error(ActiveModel::MassAssignmentSecurity::Error)
   end
 
@@ -37,5 +43,23 @@ describe Zombie, 'validation' do
     Zombie.gen(:age => 12.0).should_not be_valid
     Zombie.gen(:age => '12').should     be_valid
     Zombie.gen(:age =>   12).should     be_valid
+  end
+end
+
+describe Zombie, '#brain=' do
+
+  it 'can have a favorite kind of brain' do
+    brain  = Brain.gen
+    zombie = Zombie.gen :brain => brain
+    zombie.brain.should == brain
+  end
+end
+
+describe Zombie, '#gut=' do
+
+  it 'can have a favorite kind of gut' do
+    gut    = Gut.gen
+    zombie = Zombie.gen :gut => gut
+    zombie.gut.should == gut
   end
 end
