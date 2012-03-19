@@ -40,17 +40,18 @@ describe Zombie, 'validation' do
 
   it 'requires age to be an int' do
     Zombie.gen(:age => 'ze').should_not be_valid
-    Zombie.gen(:age => 12.0).should_not be_valid
+    Zombie.gen(:age => 1.0 ).should_not be_valid
     Zombie.gen(:age => '12').should     be_valid
-    Zombie.gen(:age =>   12).should     be_valid
+    Zombie.gen(:age =>  12 ).should     be_valid
   end
 end
 
 describe Zombie, '#brain=' do
 
   it 'can have a favorite kind of brain' do
-    brain  = Brain.gen
+    brain = Brain.gen
     zombie = Zombie.gen :brain => brain
+
     zombie.brain.should == brain
   end
 end
@@ -58,8 +59,9 @@ end
 describe Zombie, '#gut=' do
 
   it 'can have a favorite kind of gut' do
-    gut    = Gut.gen
+    gut = Gut.gen
     zombie = Zombie.gen :gut => gut
+
     zombie.gut.should == gut
   end
 end
