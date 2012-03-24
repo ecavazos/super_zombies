@@ -3,6 +3,12 @@ SuperZombies::Application.routes.draw do
   resources :brains
   resources :guts
 
+  namespace :api do
+    namespace :v1 do
+      resources :zombies
+    end
+  end
+
   root :to => 'welcome#index'
   # The priority is based upon order of creation:
   # first created -> highest priority.
