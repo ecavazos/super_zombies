@@ -8,33 +8,105 @@ describe 'Zombies' do
     Rails.application
   end
 
-  it 'should return all zombies' do
-    zombies = []
-    zombies << Zombie.gen(:name => 'Vash')
-    zombies << Zombie.gen(:name => 'Wolfwood')
-    zombies << Zombie.gen(:name => 'Meryl')
-    zombies << Zombie.gen(:name => 'Milly')
+  def should_be_zombie_json(json, zombie)
+    json['id'].should                  == zombie.id
+    json['name'].should                == zombie.name
+    json['gender'].should              == zombie.gender
+    json['age'].should                 == zombie.age
+    json['created_at'].should          == zombie.created_at.as_json
+    json['brain']['id'].should         == zombie.brain.id
+    json['brain']['kind'].should       == zombie.brain.kind
+    json['brain']['size'].should       == zombie.brain.size
+    json['brain']['created_at'].should == zombie.brain.created_at.as_json
+    json['gut']['id'].should           == zombie.gut.id
+    json['gut']['kind'].should         == zombie.gut.kind
+    json['gut']['species'].should      == zombie.gut.species
+    json['gut']['created_at'].should   == zombie.gut.created_at.as_json
+  end
 
-    get '/api/v1/zombies.json'
+  context 'Index' do
 
-    last_response.headers['Content-Type'].should == 'application/json'
-    last_response.status.should == 200
+    it 'should return all zombies' do
+      Zombie.gen :name => 'Vash'
+      Zombie.gen :name => 'Wolfwood'
+      Zombie.gen :name => 'Meryl'
+      Zombie.gen :name => 'Milly'
 
-    Yajl.load(last_response.body).each_with_index do |resp, i|
-      zombie = zombies[i]
+      get '/api/v1/zombies.json'
 
-      resp['id'    ].should == zombie.id
-      resp['name'  ].should == zombie.name
-      resp['gender'].should == zombie.gender
-      resp['age'   ].should == zombie.age
+      last_response.headers['Content-Type'].should == 'application/json'
+      last_response.status.should == 200
 
-      resp['brain']['id'  ].should == zombie.brain.id
-      resp['brain']['kind'].should == zombie.brain.kind
-      resp['brain']['size'].should == zombie.brain.size
+      zombies = Zombie.all
 
-      resp['gut']['id'     ].should == zombie.gut.id
-      resp['gut']['kind'   ].should == zombie.gut.kind
-      resp['gut']['species'].should == zombie.gut.species
+      Yajl.load(last_response.body).each_with_index do |response, i|
+        should_be_zombie_json response, zombies[i]
+      end
+    end
+  end
+
+  context 'Create' do
+
+    it 'should create a zombie and return the zombie as json' do
+      Zombie.count.should == 0
+
+      post '/api/v1/zombies.json', {
+        :name     => 'UUURRGGH',
+        :gender   => 'Male',
+        :age      => 22,
+        :brain_id => Brain.gen.id,
+        :gut_id   => Gut.gen.id
+      }
+
+      Zombie.count.should == 1
+
+      last_response.headers['Content-Type'].should == 'application/json'
+      last_response.status.should == 200
+
+      zombie = Zombie.first
+      json   = Yajl.load(last_response.body)
+
+      should_be_zombie_json json, zombie
+    end
+
+    it 'should create brain and gut when post data does not contain thier ids' do
+      Zombie.count.should == 0
+      Brain.count.should  == 0
+      Gut.count.should    == 0
+
+      post '/api/v1/zombies.json', {
+        :name        => 'UUURRGGH',
+        :gender      => 'Male',
+        :age         => 22,
+        :brain_kind  => 'Damaged',
+        :brain_size  => 'Medium',
+        :gut_kind    => 'Juicy',
+        :gut_species => 'Bear'
+      }
+
+      Zombie.count.should == 1
+      Brain.count.should  == 1
+      Gut.count.should    == 1
+
+      last_response.headers['Content-Type'].should == 'application/json'
+      last_response.status.should == 200
+
+      zombie = Zombie.first
+      json   = Yajl.load(last_response.body)
+
+      should_be_zombie_json json, zombie
+    end
+
+    it 'should respond with 400 when post data is not valid' do
+      Zombie.count.should == 0
+
+      post '/api/v1/zombies.json', :name => 'UUURRGGH'
+
+      Zombie.count.should == 0
+
+      last_response.headers['Content-Type'].should == 'application/json'
+      last_response.status.should == 400
+      last_response.body.should == ''
     end
   end
 end
