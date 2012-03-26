@@ -22,6 +22,12 @@ describe 'Zombies' do
     json['gut']['kind'].should         == zombie.gut.kind
     json['gut']['species'].should      == zombie.gut.species
     json['gut']['created_at'].should   == zombie.gut.created_at.as_json
+
+    json.should_not         have_key('updated_at')
+    json.should_not         have_key('brain_id')
+    json.should_not         have_key('gut_id')
+    json[:brain].should_not have_key('updated_at') if json[:brain]
+    json[:gut].should_not   have_key('updated_at') if json[:gut]
   end
 
   context 'Index' do
@@ -105,6 +111,7 @@ describe 'Zombies' do
       zombie = Zombie.first
       json   = Yajl.load(last_response.body)
 
+      json.should_not have_key('updated_at')
       should_be_zombie_json json, zombie
     end
 

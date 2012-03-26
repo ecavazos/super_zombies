@@ -56,16 +56,16 @@ class Api::V1::ZombiesController < Api::Controller
       gut   = @zombie.gut
 
       hash = @zombie.attributes
-      [:brain_id, :gut_id, :updated_at].each { |s| hash.delete(s) }
+      ['brain_id', 'gut_id', 'updated_at'].each { |key| hash.delete(key) }
 
       if brain
         hash[:brain] = brain.attributes
-        hash[:brain].delete :updated_at
+        hash[:brain].delete 'updated_at'
       end
 
       if gut
         hash[:gut] = gut.attributes
-        hash[:gut].delete :updated_at
+        hash[:gut].delete 'updated_at'
       end
 
       hash
