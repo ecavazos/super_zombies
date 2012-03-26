@@ -1,3 +1,5 @@
+require 'yajl'
+
 class Api::Controller < ActionController::Metal
   include ActionController::Rendering
   include ActionController::MimeResponds

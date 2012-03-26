@@ -43,6 +43,17 @@ describe 'Zombies' do
         should_be_zombie_json response, zombies[i]
       end
     end
+
+    it 'does not include brain or gut when nil' do
+      Zombie.gen :name => 'Vash', :brain => nil, :gut => nil
+
+      get '/api/v1/zombies.json'
+
+      json = Yajl.load(last_response.body)
+
+      json.first.should_not have_key(:brain)
+      json.first.should_not have_key(:gut)
+    end
   end
 
   context 'Create' do
