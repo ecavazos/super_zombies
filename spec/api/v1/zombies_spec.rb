@@ -111,7 +111,6 @@ describe 'Zombies' do
       zombie = Zombie.first
       json   = Yajl.load(last_response.body)
 
-      json.should_not have_key('updated_at')
       should_be_zombie_json json, zombie
     end
 
