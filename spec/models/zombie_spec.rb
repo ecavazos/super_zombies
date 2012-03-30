@@ -65,3 +65,45 @@ describe Zombie, '#gut=' do
     zombie.gut.should == gut
   end
 end
+
+describe Zombie, '.build_from_hash' do
+
+  it 'can make a new zombie from hash' do
+    brain = Brain.gen
+    gut   = Gut.gen
+
+    zombie = Zombie.build_from_hash \
+      :name     => 'UUURRGGH',
+      :gender   => 'Male',
+      :age      => 22,
+      :brain_id => brain,
+      :gut_id   => gut
+
+    zombie.name.should   == 'UUURRGGH'
+    zombie.gender.should == 'Male'
+    zombie.age.should    == 22
+    zombie.brain.should  == brain
+    zombie.gut.should    == gut
+  end
+
+  it 'can make a new zombie along with the brain and gut when the ids are not provided' do
+    zombie = Zombie.build_from_hash \
+      :name        => 'UUURRGGH',
+      :gender      => 'Male',
+      :age         => 22,
+      :brain_kind  => 'Damaged',
+      :brain_size  => 'Medium',
+      :gut_kind    => 'Juicy',
+      :gut_species => 'Bear'
+
+    zombie.name.should   == 'UUURRGGH'
+    zombie.gender.should == 'Male'
+    zombie.age.should    == 22
+
+    zombie.brain.kind.should  == 'Damaged'
+    zombie.brain.size.should  == 'Medium'
+
+    zombie.gut.kind.should    == 'Juicy'
+    zombie.gut.species.should == 'Bear'
+  end
+end

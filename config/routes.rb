@@ -6,6 +6,7 @@ SuperZombies::Application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :zombies
+      resource  :horde
     end
   end
 

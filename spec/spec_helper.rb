@@ -16,6 +16,8 @@ RSpec.configure do |config|
   config.use_transactional_fixtures                 = false # If set to true it makes selenium + sqlite sad :(
   config.infer_base_class_for_anonymous_controllers = false
 
+  config.include JsonHelper
+
   config.before :each do
     DatabaseCleaner.strategy = :truncation
     DatabaseCleaner.start
