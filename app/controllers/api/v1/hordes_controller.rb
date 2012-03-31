@@ -1,4 +1,4 @@
-# require 'zombie_presenter'
+require 'zombie_presenter'
 
 class Api::V1::HordesController < Api::Controller
 
