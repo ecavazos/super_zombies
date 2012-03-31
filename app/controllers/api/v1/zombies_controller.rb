@@ -2,10 +2,6 @@ require 'zombie_presenter'
 
 class Api::V1::ZombiesController < Api::Controller
 
-  # This is a very simple and early iteration of the super_zombie API.
-  # For the time being, all of the logic is here in the controller.
-  # Future iterations will see this code refactored out and into
-  # the model layer.
   def index
     data = Zombie.all.map do |zombie|
       ZombiePresenter.new zombie
