@@ -2,11 +2,9 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.2'
 
-gem 'sqlite3'
 gem 'json'
 gem 'haml'
 gem 'yajl-ruby'
-gem 'therubyracer'
 
 group :production do
   gem 'pg'
@@ -28,11 +26,12 @@ end
 gem 'jquery-rails'
 
 group :development, :test do
-  gem 'capybara'
+  gem 'sqlite3'
   gem 'rspec-rails'
 end
 
 group :test do
+  gem 'capybara'
   gem 'factory_girl_rails'
   gem 'factory_girl_extensions'
   gem 'launchy'
