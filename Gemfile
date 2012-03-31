@@ -6,6 +6,7 @@ gem 'sqlite3'
 gem 'json'
 gem 'haml'
 gem 'yajl-ruby'
+gem 'therubyracer'
 
 group :production do
   gem 'pg'
