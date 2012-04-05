@@ -13,7 +13,7 @@ describe 'Creating brains', :js => true do
       fill_in 'Kind', :with => 'Playful'
       fill_in 'Size', :with => 'Medium'
 
-      click_button 'Bon Appétit'
+      click_button 'Nom Nom'
     end
 
     find('#notice').should have_content('Mmmmmm Brains.')
@@ -36,7 +36,7 @@ describe 'Creating brains', :js => true do
       fill_in 'Kind', :with => ''
       fill_in 'Size', :with => ''
 
-      click_button 'Bon Appétit'
+      click_button 'Nom Nom'
     end
 
     errors = all('.error')

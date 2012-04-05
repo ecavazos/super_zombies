@@ -11,7 +11,7 @@ describe 'Editing brains', :js => true do
 
     within "#edit_brain_#{ brain.id }" do
       fill_in 'Kind', :with => 'Impaired'
-      click_button 'Bon Appétit'
+      click_button 'Nom Nom'
     end
 
     find('#notice').should have_content('Exquisite brain.')
@@ -30,7 +30,7 @@ describe 'Editing brains', :js => true do
       fill_in 'Kind', :with => ''
       fill_in 'Size', :with => ''
 
-      click_button 'Bon Appétit'
+      click_button 'Nom Nom'
     end
 
     errors = all('.error')

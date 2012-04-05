@@ -13,7 +13,7 @@ describe 'Creating guts', :js => true do
       fill_in 'Kind',    :with => 'Rotten'
       fill_in 'Species', :with => 'Elephant'
 
-      click_button 'Bon Appétit'
+      click_button 'Nom Nom'
     end
 
     find('#notice').should have_content('Mmmmmm Guts.')
@@ -36,7 +36,7 @@ describe 'Creating guts', :js => true do
       fill_in 'Kind',    :with => ''
       fill_in 'Species', :with => ''
 
-      click_button 'Bon Appétit'
+      click_button 'Nom Nom'
     end
 
     errors = all('.error')

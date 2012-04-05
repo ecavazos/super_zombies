@@ -11,7 +11,7 @@ describe 'Editing guts', :js => true do
 
     within "#edit_gut_#{ gut.id }" do
       fill_in 'Kind', :with => 'Evacuated'
-      click_button 'Bon Appétit'
+      click_button 'Nom Nom'
     end
 
     find('#notice').should have_content('Guts are better with hot sauce.')
@@ -30,7 +30,7 @@ describe 'Editing guts', :js => true do
       fill_in 'Kind',    :with => ''
       fill_in 'Species', :with => ''
 
-      click_button 'Bon Appétit'
+      click_button 'Nom Nom'
     end
 
     errors = all('.error')
